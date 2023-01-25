@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'tisno.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'weblog',
+        'NAME': 'tisno',
         'USER': 'bgopc',
         'PASSWORD': os.getenv('psqlPW'),
         'HOST': '127.0.0.1',
