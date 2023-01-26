@@ -54,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'tisno.urls'
+LOGIN_URL = ''
 
 TEMPLATES = [
     {

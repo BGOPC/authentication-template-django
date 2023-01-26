@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView, CreateView
 
 
 # Create your views here.
@@ -13,3 +13,11 @@ class UserView(TemplateView):
         context = super().get_context_data(**kwargs)
         # context edits later
         return context
+
+
+def LoginView(FormView):
+    pass
+
+
+def newUserView(CreateView):
+    pass
