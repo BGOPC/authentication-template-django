@@ -22,4 +22,5 @@ class Message(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     msg = models.CharField(max_length=255, null=False)
     date = models.DateTimeField(auto_now_add=True, null=False)
+    is_announced = models.BooleanField(default=False, null=False)
     img = models.ImageField(upload_to=user_directory_path, null=True)
