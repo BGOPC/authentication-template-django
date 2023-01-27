@@ -1,7 +1,52 @@
 {% extends '_layout.html' %}
 {% block title %}
-register
+    register
 {% endblock %}
 {% block content %}
-somebullshit
+    <form
+            method="post"
+            id="signupForm"
+            class="bg-slate-400 w-100 px-5 border-2 border-gray-900 py-3 rounded-3 h-100 my-4"
+    >
+        {% csrf_token %}
+        <div>
+            <label class="block text-center font-weight-bold text-lg">FirstName</label>
+            {{ form.first_name }}
+        </div>
+        <div>
+            <label class="block text-center font-weight-bold text-lg">FirstName</label>
+            {{ form.last_name }}
+        </div>
+        <div>
+            <label class="block text-center font-weight-bold text-lg">UserName</label>
+            {{ form.username }}
+        </div>
+        <div>
+            <label class="block text-center font-weight-bold text-lg">Email</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label class="block text-center font-weight-bold text-lg">Password</label>
+            {{ form.password1 }}
+        </div>
+        <div>
+            <label class="block text-center font-weight-bold text-lg"
+            >Password Confirmation</label
+            >
+            {{ form.password2 }}
+        </div>
+        <div class="flex items-baseline justify-center">
+            <a
+                    href="{% url 'login' %}"
+                    class="text-decoration-none text-gray-800 hover:text-gray-900 font-bold py-2 px-4 rounded"
+            >
+                Have an account? Login
+            </a>
+        </div>
+        <div class="flex items-baseline justify-center">
+            <input type="submit" value="Register"
+                    class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
+            >
+        </div>
+    </form>
 {% endblock %}
