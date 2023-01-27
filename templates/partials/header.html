@@ -1,10 +1,25 @@
-<div id="header">
-    <nav>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-        </ul>
-    </nav>
-</div>
+<nav class="relative flex flex-wrap items-center content-between py-3 px-4  text-white bg-slate-800">
+    <div class="container mx-auto sm:px-4 max-w-full mx-auto sm:px-4">
+        <div>
+            <ul class="flex flex-wrap list-reset pl-0 mb-0">
+                <li class="">
+                    <a class="inline-block py-2 px-4 no-underline" href="{% url 'home' %}">Home</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="flex flex-wrap list-reset pl-0 mb-0">
+                {% if user.is_authenticated %}
+                    <span class="inline-block pt-2 pb-2">Logged in as {{ user.username }} | </span>
+                    <li class="navbar-item">
+                        <a class="inline-block py-2 px-4 no-underline" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="navbar-item">
+                        <a class="inline-block py-2 px-4 no-underline" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
