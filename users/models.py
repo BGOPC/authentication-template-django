@@ -14,11 +14,16 @@ class Group(models.Model):
 
 
 class User(AbstractUser):
+    username = models.SlugField(default="", null=False, db_index=True, blank=True) # forced by django admin problems :(
     password = models.CharField(max_length=255, null=True)
     email = models.EmailField(max_length=255, unique=True)
     group = models.ManyToManyField(Group)
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name", "password"]
+    REQUIRED_FIELDS = ["username", "first_name", "last_name", "password"]
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.first_name + self.last_name)
+        super().save(*args, **kwargs)
 
 
 class Message(models.Model):

@@ -1,14 +1,14 @@
+from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView as authLoginView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render, resolve_url
+from django.shortcuts import resolve_url, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from . import forms
 from django.views.generic import TemplateView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import logout
-from django.contrib.auth.views import LoginView as authLoginView
-from django.contrib.auth.views import LogoutView as authLogoutView
+
 from tisno import settings
+from . import forms
 
 
 # Create your views here.
@@ -38,8 +38,11 @@ class newUserView(SuccessMessageMixin, CreateView):
     success_message = "Your profile was created successfully"
 
 
-class LogoutView(authLogoutView):
-    template_name = "users/logout.html"
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('home')
 
-    def get_default_redirect_url(self):
-        return resolve_url(settings.LOGOUT_REDIRECT_URL)
+    def post(self, request):
+        logout(request)
+        return redirect('home')
