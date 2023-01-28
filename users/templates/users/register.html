@@ -22,13 +22,22 @@
             {{ form.email }}
         </div>
         <div>
+            <label class="block text-center font-weight-bold text-lg">Email</label>
+            {{ form.phone }}
+            {% if form.phone.error_messages %}
+                <small class="text-red-400">
+                    {{ form.phone.error_messages }}
+                </small>
+            {% endif %}
+        </div>
+        <div>
             <label class="block text-center font-weight-bold text-lg">Password</label>
             {{ form.password1 }}
             {% if form.password1.error_messages %}
-          <small class="text-red-400">
-          {{ form.password1.error_messages }}
-          </small>
-      {% endif %}
+                <small class="text-red-400">
+                    {{ form.password1.error_messages }}
+                </small>
+            {% endif %}
         </div>
         <div>
             <label class="block text-center font-weight-bold text-lg"
@@ -36,10 +45,10 @@
             >
             {{ form.password2 }}
             {% if form.password2.error_messages %}
-          <small class="text-red-400">
-          {{ form.password2.error_messages }}
-          </small>
-      {% endif %}
+                <small class="text-red-400">
+                    {{ form.password2.error_messages }}
+                </small>
+            {% endif %}
         </div>
         <div class="flex items-baseline justify-center">
             <a
@@ -51,7 +60,7 @@
         </div>
         <div class="flex items-baseline justify-center">
             <input type="submit" value="Register"
-                    class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
+                   class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
             >
         </div>
     </form>

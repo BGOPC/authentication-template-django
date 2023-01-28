@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from users.models import User
 
 
@@ -31,6 +32,13 @@ class NewUserForm(UserCreationForm):
                  "mb-3 leading-tight focus:outline-none focus:bg-white",
         "placeholder": "email"
     }))
+    phone = PhoneNumberField(required=True, region="INTERNATIONAL", widget=PhoneNumberPrefixWidget(
+        attrs={
+            "class": "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 "
+                     "mb-3 leading-tight focus:outline-none focus:bg-white",
+            "placeholder": "phone number"
+        }
+    ))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

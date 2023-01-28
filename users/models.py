@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.text import slugify
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
@@ -13,11 +14,21 @@ class Group(models.Model):
     name = models.CharField(max_length=100, null=False, default='basic')
 
 
+class Trip(models.Model):
+    pass
+
+
+class Course(models.Model):
+    pass
+
+
 class User(AbstractUser):
     username = models.SlugField(default="", null=False, db_index=True, blank=True)  # forced by django admin problems :(
     password = models.CharField(max_length=255, null=True)
     email = models.EmailField(max_length=255, unique=True)
     group = models.ManyToManyField(Group)
+    phoneNum = PhoneNumberField(null=False, unique=True, default='')
+    course_bought = models.ManyToManyField(Course)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "first_name", "last_name", "password"]
 
