@@ -14,7 +14,7 @@ class Group(models.Model):
 
 
 class User(AbstractUser):
-    username = models.SlugField(default="", null=False, db_index=True, blank=True) # forced by django admin problems :(
+    username = models.SlugField(default="", null=False, db_index=True, blank=True)  # forced by django admin problems :(
     password = models.CharField(max_length=255, null=True)
     email = models.EmailField(max_length=255, unique=True)
     group = models.ManyToManyField(Group)
