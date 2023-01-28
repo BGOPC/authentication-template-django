@@ -14,12 +14,8 @@
             {{ form.first_name }}
         </div>
         <div>
-            <label class="block text-center font-weight-bold text-lg">FirstName</label>
+            <label class="block text-center font-weight-bold text-lg">LastName</label>
             {{ form.last_name }}
-        </div>
-        <div>
-            <label class="block text-center font-weight-bold text-lg">UserName</label>
-            {{ form.username }}
         </div>
         <div>
             <label class="block text-center font-weight-bold text-lg">Email</label>
@@ -28,12 +24,22 @@
         <div>
             <label class="block text-center font-weight-bold text-lg">Password</label>
             {{ form.password1 }}
+            {% if form.password1.error_messages %}
+          <small class="text-red-400">
+          {{ form.password1.error_messages }}
+          </small>
+      {% endif %}
         </div>
         <div>
             <label class="block text-center font-weight-bold text-lg"
             >Password Confirmation</label
             >
             {{ form.password2 }}
+            {% if form.password2.error_messages %}
+          <small class="text-red-400">
+          {{ form.password2.error_messages }}
+          </small>
+      {% endif %}
         </div>
         <div class="flex items-baseline justify-center">
             <a

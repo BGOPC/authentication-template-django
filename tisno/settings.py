@@ -55,7 +55,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'tisno.urls'
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/users/'
+LOGIN_REDIRECT_URL = 'profile'
+LOGOUT_REDIRECT_URL = 'login'
 AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [

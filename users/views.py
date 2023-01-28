@@ -1,11 +1,13 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, resolve_url
+from django.urls import reverse_lazy
 from django.views import View
 from . import forms
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView as authLoginView
-from django.contrib.auth.views import RedirectURLMixin as authRedirectURLMixin
+from django.contrib.auth.views import LogoutView as authLogoutView
 from tisno import settings
 
 
@@ -29,5 +31,15 @@ class LoginView(authLoginView):
         return resolve_url(settings.LOGIN_REDIRECT_URL)
 
 
-class newUserView(View):
-    pass
+class newUserView(SuccessMessageMixin, CreateView):
+    template_name = "users/register.html"
+    form_class = forms.NewUserForm
+    success_url = reverse_lazy('login')
+    success_message = "Your profile was created successfully"
+
+
+class LogoutView(authLogoutView):
+    template_name = "users/logout.html"
+
+    def get_default_redirect_url(self):
+        return resolve_url(settings.LOGOUT_REDIRECT_URL)
