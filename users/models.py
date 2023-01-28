@@ -39,21 +39,23 @@ class User(AbstractUser):
 
 
 class Course(models.Model):
-    name = models.CharField(max_length=100, null=False)
-    teacher = models.ForeignKey(User, on_delete=models.PROTECT)
-    students = models.ManyToManyField(User)
+    name = models.CharField(max_length=100, null=False, blank=True)
+    teacher = models.ForeignKey(User, on_delete=models.PROTECT, related_name='teacher', null=True)
+    students = models.ManyToManyField(User, related_name='student')
     video = models.FileField(upload_to='videos_uploaded', null=True,
                              validators=[
                                  FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
-    lastUpdate = models.DateTimeField(auto_add=True)
-    price = models.DecimalField(null=False, default=1000000)
+    lastUpdate = models.DateTimeField(auto_now=True)
+    price = models.DecimalField(null=False, default=1000000, max_digits=7, decimal_places=0)
 
 
 class Trip(models.Model):
     name = models.CharField(null=False, default='', max_length=150)
     date = models.DateTimeField(default=datetime.datetime.today() + datetime.timedelta(days=1))
-    members = models.ManyToManyField(User)
-    price = models.DecimalField(null=False, default=1000000)
+    members = models.ManyToManyField(User, related_name='members')
+    price = models.DecimalField(null=False, default=1000000, max_digits=7, decimal_places=0)
+    manager = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
+                                limit_choices_to={'is_staff': True}, related_name='manager')
 
 
 class Message(models.Model):

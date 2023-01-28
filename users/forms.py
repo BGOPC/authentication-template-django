@@ -32,7 +32,7 @@ class NewUserForm(UserCreationForm):
                  "mb-3 leading-tight focus:outline-none focus:bg-white",
         "placeholder": "email"
     }))
-    phone = PhoneNumberField(required=True, region="INTERNATIONAL", widget=PhoneNumberPrefixWidget(
+    phone = PhoneNumberField(required=True, region="IR", widget=PhoneNumberPrefixWidget(
         attrs={
             "class": "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 "
                      "mb-3 leading-tight focus:outline-none focus:bg-white",
