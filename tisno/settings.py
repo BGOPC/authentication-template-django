@@ -88,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tisno',
-        'USER': 'bgopc',
+        'USER': os.getenv('psqlUser'),
         'PASSWORD': os.getenv('psqlPW'),
         'HOST': '127.0.0.1',
         'PORT': '5432',
