@@ -43,17 +43,19 @@ class User(AbstractUser):
         super().save(*args, **kwargs)
 
 
-class Product(models.Model):
+class BaseProduct(models.Model):
+    class Meta:
+        abstract = True
+
     name = models.CharField(max_length=100, null=False, blank=True)
-    shoppers = models.ManyToManyField(User, related_name='shopper')
-    tumb = models.ImageField(upload_to=course_tumb_directory_path, null=False)
+    shoppers = models.ManyToManyField(User)
+    tumb = models.ImageField(upload_to=course_tumb_directory_path, null=False, blank=True)
     lastUpdate = models.DateTimeField(auto_now=True)
     price = models.DecimalField(null=False, default=1000000, max_digits=7, decimal_places=0)
 
 
-class Seller(User):
-    address = models.CharField(max_length=255, null=False, default='')
-    products = models.ManyToManyField(Product)
+class Product(BaseProduct):
+    count = models.DecimalField(null=False, default=1, max_digits=7, decimal_places=0)
 
 
 class Teacher(User):
@@ -72,11 +74,16 @@ class Teacher(User):
     topic = models.CharField(max_length=2, choices=TOPICS, default=TOPICS[-1][0])
 
 
-class Course(Product):
+class Course(BaseProduct):
     video = models.FileField(upload_to=course_directory_path, null=True,
                              validators=[
                                  FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
-    author = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True, related_name='courses')
+
+
+class Seller(User):
+    address = models.CharField(max_length=255, null=False, default='')
+    products = models.ManyToManyField(Product)
 
 
 class Trip(models.Model):
