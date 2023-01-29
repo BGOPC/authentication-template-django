@@ -69,7 +69,7 @@ class Teacher(User):
         ("RG", "Religious"),
         ("Or", "Other"),
     ]
-    topic = models.CharField(max_length=2, choices=TOPICS, default=TOPICS[-1])
+    topic = models.CharField(max_length=2, choices=TOPICS, default=TOPICS[-1][0])
 
 
 class Course(Product):
