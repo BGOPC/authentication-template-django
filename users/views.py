@@ -1,6 +1,7 @@
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView as authLoginView
+from django.contrib.auth.views import PasswordResetView as authPasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import resolve_url, redirect
 from django.urls import reverse_lazy
@@ -46,3 +47,14 @@ class LogoutView(View):
     def post(self, request):
         logout(request)
         return redirect('home')
+
+
+class PasswordResetView(authPasswordResetView, SuccessMessageMixin):
+    template_name = 'users/password_reset.html'
+    email_template_name = 'users/password_reset_email.html'
+    subject_template_name = 'users/password_reset_subject'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('users-home')
