@@ -10,6 +10,16 @@ def user_directory_path(instance, filename):
     return f'user_{instance.author.id}/%Y/%m/%d/{filename}'
 
 
+def course_tumb_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT / user_<id>/<filename>
+    return f'user_courses_{instance.teacher.id}/%Y/%m/%d/{instance.name + "." + filename.split(".")[1]}'
+
+
+def course_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT / user_<id>/<filename>
+    return f'user_courses_{instance.teacher.id}/%Y/%m/%d/{instance.name + "." + filename.split(".")[1]}'
+
+
 class Group(models.Model):
     name = models.CharField(max_length=100, null=False, default='basic')
 

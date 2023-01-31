@@ -1,7 +1,7 @@
 {% extends '_layout.html' %}
 {% block title %}
-    UserName {# {{ user.name }}#}
+    {{ user.first_name|title|add:" "|add:user.last_name|title }}
 {% endblock %}
 {% block content %}
-somebullshit
+
 {% endblock %}

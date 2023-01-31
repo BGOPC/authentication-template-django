@@ -12,7 +12,7 @@ class LoginForm(AuthenticationForm):
         self.fields['username'].label = 'email'
         self.fields['username'].widget = forms.TextInput(attrs={
             "class": "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 "
-                     "mb-3 leading-tight focus:outline-none focus:bg-white",
+                     "mb-3 leading-tight focus:outline-none focus:bg-white text-center",
             "placeholder": "email"
         })
         self.fields['password'].label = 'PassWord'
@@ -21,7 +21,7 @@ class LoginForm(AuthenticationForm):
                                                                              "bg-gray-200 text-gray-700 border "
                                                                              "border-red-500 rounded py-3 px-4 mb-3 "
                                                                              "leading-tight focus:outline-none "
-                                                                             "focus:bg-white",
+                                                                             "focus:bg-white text-center",
                                                                     "placeholder": "Password"
                                                                     })
 
@@ -29,13 +29,14 @@ class LoginForm(AuthenticationForm):
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
         "class": "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 "
-                 "mb-3 leading-tight focus:outline-none focus:bg-white",
+                 "mb-3 leading-tight focus:outline-none text-center focus:bg-white",
         "placeholder": "email"
     }))
     phone = PhoneNumberField(required=True, region="IR", widget=PhoneNumberPrefixWidget(
+        initial="IR",
         attrs={
-            "class": "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 "
-                     "mb-3 leading-tight focus:outline-none focus:bg-white",
+            "class": "appearance-none block w-full bg-gray-200 text-center text-gray-700 border border-red-500 "
+                     "rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
             "placeholder": "phone number"
         }
     ))
@@ -45,13 +46,13 @@ class NewUserForm(UserCreationForm):
         self.fields['first_name'].label = 'First Name'
         self.fields['first_name'].widget = forms.TextInput(attrs={
             "class": "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 "
-                     "mb-3 leading-tight focus:outline-none focus:bg-white",
+                     "mb-3 leading-tight focus:outline-none text-center focus:bg-white",
             "placeholder": "FirstName"
         })
         self.fields['last_name'].label = 'Last Name'
         self.fields['last_name'].widget = forms.TextInput(attrs={
             "class": "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 "
-                     "mb-3 leading-tight focus:outline-none focus:bg-white",
+                     "mb-3 leading-tight focus:outline-none text-center focus:bg-white",
             "placeholder": "LastName"
         })
         self.fields['password1'].label = 'PassWord'
@@ -60,7 +61,7 @@ class NewUserForm(UserCreationForm):
                                                                               "bg-gray-200 text-gray-700 border "
                                                                               "border-red-500 rounded py-3 px-4 mb-3 "
                                                                               "leading-tight focus:outline-none "
-                                                                              "focus:bg-white",
+                                                                              "focus:bg-white text-center",
                                                                      "placeholder": "Password"
                                                                      })
         self.fields['password2'].label = 'RePeat PassWord'
@@ -69,7 +70,7 @@ class NewUserForm(UserCreationForm):
                                                                               "bg-gray-200 text-gray-700 border "
                                                                               "border-red-500 rounded py-3 px-4 mb-3 "
                                                                               "leading-tight focus:outline-none "
-                                                                              "focus:bg-white",
+                                                                              "focus:bg-white text-center",
                                                                      "placeholder": "Repeat Password"
                                                                      })
 

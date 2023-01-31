@@ -19,7 +19,7 @@ class UserView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context edits later
+        context['user'] = self.request.user
         return context
 
 

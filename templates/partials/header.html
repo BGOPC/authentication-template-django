@@ -10,7 +10,7 @@
         <div>
             <ul class="flex flex-wrap list-reset pl-0 mb-0">
                 {% if user.is_authenticated %}
-                    <span class="inline-block pt-2 pb-2">Logged in as {{ user.first_name|add:user.last_name|title }} | </span>
+                    <span class="inline-block pt-2 pb-2">Logged in as {{ user.first_name|title|add:" "|add:user.last_name|title }} | </span>
                     <li class="navbar-item">
                         <a class="inline-block py-2 px-4 no-underline" href="{% url 'logout' %}">Logout</a>
                     </li>
