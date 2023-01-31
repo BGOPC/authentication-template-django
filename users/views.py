@@ -7,7 +7,7 @@ from django.shortcuts import resolve_url, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView
-
+from shop.models import Course, Product
 from tisno import settings
 from . import forms
 
@@ -19,7 +19,11 @@ class UserView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
+        current_user = self.request.user
+        products_bought = Product.objects.filter(shoppers__username=current_user.username)
+        courses_bought = Course.objects.filter(shoppers__username=current_user.username)
+        context['products'] = products_bought
+        context['courses'] = courses_bought
         return context
 
 
