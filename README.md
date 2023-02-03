@@ -1,2 +1,3 @@
-# IRGC Terrorist Management
-Project written in django for IRGC to manage its users and works
+# User Management System
+
+An application for companies to register there uses and send announcements
