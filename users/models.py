@@ -20,15 +20,10 @@ def course_directory_path(instance, filename):
     return f'user_courses_{instance.teacher.id}/%Y/%m/%d/{instance.name + "." + filename.split(".")[1]}'
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=100, null=False, default='basic')
-
-
 class User(AbstractUser):
     username = models.SlugField(default="", null=False, db_index=True, blank=True)  # forced by django admin problems :(
     password = models.CharField(max_length=255, null=True)
     email = models.EmailField(max_length=255, unique=True)
-    group = models.ManyToManyField(Group)
     is_teacher = models.BooleanField(default=False, null=False)
     is_seller = models.BooleanField(default=False, null=False)
     phoneNum = PhoneNumberField(null=False, unique=True, default='')
