@@ -57,11 +57,3 @@ class Seller(User):
     address = models.CharField(max_length=255, null=False, default='')
     products = models.ManyToManyField(Product)
 
-
-class Trip(models.Model):
-    name = models.CharField(null=False, default='', max_length=150)
-    date = models.DateTimeField(default=datetime.datetime.today() + datetime.timedelta(days=1))
-    members = models.ManyToManyField(User, related_name='members')
-    price = models.DecimalField(null=False, default=1000000, max_digits=7, decimal_places=0)
-    manager = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
-                                limit_choices_to={'is_staff': True}, related_name='manager')

@@ -7,6 +7,7 @@ import django.core.validators
 from django.db import migrations, models
 import django.db.models.deletion
 import users.models
+import shop.models
 
 
 class Migration(migrations.Migration):
@@ -21,7 +22,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(blank=True, max_length=100)),
-                ('tumb', models.ImageField(blank=True, upload_to=users.models.course_tumb_directory_path)),
+                ('tumb', models.ImageField(blank=True, upload_to=shop.models.course_tumb_directory_path)),
                 ('lastUpdate', models.DateTimeField(auto_now=True)),
                 ('price', models.DecimalField(decimal_places=0, default=1000000, max_digits=7)),
                 ('count', models.DecimalField(decimal_places=0, default=1, max_digits=7)),
@@ -63,12 +64,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='course',
             name='tumb',
-            field=models.ImageField(blank=True, upload_to=users.models.course_tumb_directory_path),
+            field=models.ImageField(blank=True, upload_to=shop.models.course_tumb_directory_path),
         ),
         migrations.AlterField(
             model_name='course',
             name='video',
-            field=models.FileField(null=True, upload_to=users.models.course_directory_path, validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])]),
+            field=models.FileField(null=True, upload_to=shop.models.course_directory_path, validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])]),
         ),
         migrations.AlterField(
             model_name='trip',
